@@ -1,0 +1,23 @@
+# PostgreSQL pour le developpement local.
+# URL JDBC depuis le backend local : jdbc:postgresql://localhost:5432/datashare
+services:
+  postgres:
+    image: postgres:17
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-datashare}
+      POSTGRES_USER: ${POSTGRES_USER:-datashare}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-datashare}
+    ports:
+      - "127.0.0.1:${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U \"$$POSTGRES_USER\" -d \"$$POSTGRES_DB\""]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+volumes:
+  postgres_data:

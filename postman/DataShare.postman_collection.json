@@ -1,0 +1,2907 @@
+{
+  "item": [
+    {
+      "name": "Auth",
+      "description": "",
+      "item": [
+        {
+          "id": "837efd85-949a-4ef8-816f-2046f2cc7609",
+          "name": "Créer un compte utilisateur",
+          "request": {
+            "name": "Créer un compte utilisateur",
+            "description": {
+              "content": "Enregistre un nouvel utilisateur avec un email unique et un mot de passe sécurisé. Le mot de passe n’est jamais retourné.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "auth",
+                "register"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"{{email}}\",\n  \"password\": \"{{userPassword}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "noauth"
+            }
+          },
+          "response": [
+            {
+              "id": "4803eb91-59c3-407b-81ac-a9e4544b4057",
+              "name": "Compte créé avec succès",
+              "originalRequest": {
+                "name": "Créer un compte utilisateur",
+                "description": {
+                  "content": "Enregistre un nouvel utilisateur avec un email unique et un mot de passe sécurisé. Le mot de passe n’est jamais retourné.\n",
+                  "type": "text/plain"
+                },
+                "url": {
+                  "path": [
+                    "auth",
+                    "register"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"{{email}}\",\n  \"password\": \"{{userPassword}}\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "auth": {
+                  "type": "noauth"
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d22912e1-c814-408e-aff8-6c8fde9e4014",
+              "name": "Requête invalide (400)",
+              "originalRequest": {
+                "name": "Créer un compte utilisateur",
+                "description": {
+                  "content": "Enregistre un nouvel utilisateur avec un email unique et un mot de passe sécurisé. Le mot de passe n’est jamais retourné.\n",
+                  "type": "text/plain"
+                },
+                "url": {
+                  "path": [
+                    "auth",
+                    "register"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"{{email}}\",\n  \"password\": \"{{userPassword}}\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "auth": {
+                  "type": "noauth"
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 401,\n  \"message\": \"Authentification requise\",\n  \"timestamp\": \"2024-06-01T16:00:00Z\",\n  \"fieldErrors\": [\n    {\n      \"field\": \"password\",\n      \"message\": \"Le mot de passe doit contenir au moins 8 caractères\"\n    },\n    {\n      \"field\": \"password\",\n      \"message\": \"Le mot de passe doit contenir au moins 8 caractères\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "673e0128-0d7c-4bf4-a10f-342bb27eaada",
+              "name": "Email déjà utilisé",
+              "originalRequest": {
+                "name": "Créer un compte utilisateur",
+                "description": {
+                  "content": "Enregistre un nouvel utilisateur avec un email unique et un mot de passe sécurisé. Le mot de passe n’est jamais retourné.\n",
+                  "type": "text/plain"
+                },
+                "url": {
+                  "path": [
+                    "auth",
+                    "register"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"{{email}}\",\n  \"password\": \"{{userPassword}}\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "auth": {
+                  "type": "noauth"
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 401,\n  \"message\": \"Authentification requise\",\n  \"timestamp\": \"2024-06-01T16:00:00Z\",\n  \"fieldErrors\": [\n    {\n      \"field\": \"password\",\n      \"message\": \"Le mot de passe doit contenir au moins 8 caractères\"\n    },\n    {\n      \"field\": \"password\",\n      \"message\": \"Le mot de passe doit contenir au moins 8 caractères\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.collectionVariables.set('jwt', '');"
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Statut HTTP 201', function () { pm.response.to.have.status(201); });",
+                  "if (pm.response.code === 201) {",
+                  "  const data = pm.response.json();",
+                  "  pm.test('JWT recu', function () { pm.expect(data.token).to.be.a('string').and.not.empty; });",
+                  "  if (typeof data.token === 'string' && data.token) { pm.collectionVariables.set('jwt', data.token); }",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3a92b664-9813-470d-84b4-d8c980a6c839",
+          "name": "Authentifier un utilisateur et obtenir un JWT",
+          "request": {
+            "name": "Authentifier un utilisateur et obtenir un JWT",
+            "description": {
+              "content": "Authentifie un utilisateur avec email et mot de passe, retourne un JWT en cas de succès.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "auth",
+                "login"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"{{email}}\",\n  \"password\": \"{{userPassword}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "noauth"
+            }
+          },
+          "response": [
+            {
+              "id": "ddf53a99-2c23-4150-87e8-57b3ac862f0d",
+              "name": "Authentification réussie, JWT retourné",
+              "originalRequest": {
+                "name": "Authentifier un utilisateur et obtenir un JWT",
+                "description": {
+                  "content": "Authentifie un utilisateur avec email et mot de passe, retourne un JWT en cas de succès.\n",
+                  "type": "text/plain"
+                },
+                "url": {
+                  "path": [
+                    "auth",
+                    "login"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"{{email}}\",\n  \"password\": \"{{userPassword}}\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "auth": {
+                  "type": "noauth"
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "05f530e1-fa79-4272-af4c-73df5cc6eb12",
+              "name": "Requête invalide (400)",
+              "originalRequest": {
+                "name": "Authentifier un utilisateur et obtenir un JWT",
+                "description": {
+                  "content": "Authentifie un utilisateur avec email et mot de passe, retourne un JWT en cas de succès.\n",
+                  "type": "text/plain"
+                },
+                "url": {
+                  "path": [
+                    "auth",
+                    "login"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"{{email}}\",\n  \"password\": \"{{userPassword}}\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "auth": {
+                  "type": "noauth"
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 401,\n  \"message\": \"Authentification requise\",\n  \"timestamp\": \"2024-06-01T16:00:00Z\",\n  \"fieldErrors\": [\n    {\n      \"field\": \"password\",\n      \"message\": \"Le mot de passe doit contenir au moins 8 caractères\"\n    },\n    {\n      \"field\": \"password\",\n      \"message\": \"Le mot de passe doit contenir au moins 8 caractères\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f62056be-12bd-4a5c-bfd9-bb17b8c8d58d",
+              "name": "Identifiants invalides",
+              "originalRequest": {
+                "name": "Authentifier un utilisateur et obtenir un JWT",
+                "description": {
+                  "content": "Authentifie un utilisateur avec email et mot de passe, retourne un JWT en cas de succès.\n",
+                  "type": "text/plain"
+                },
+                "url": {
+                  "path": [
+                    "auth",
+                    "login"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"{{email}}\",\n  \"password\": \"{{userPassword}}\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "auth": {
+                  "type": "noauth"
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 401,\n  \"message\": \"Authentification requise\",\n  \"timestamp\": \"2024-06-01T16:00:00Z\",\n  \"fieldErrors\": [\n    {\n      \"field\": \"password\",\n      \"message\": \"Le mot de passe doit contenir au moins 8 caractères\"\n    },\n    {\n      \"field\": \"password\",\n      \"message\": \"Le mot de passe doit contenir au moins 8 caractères\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.collectionVariables.set('jwt', '');"
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Statut HTTP 200', function () { pm.response.to.have.status(200); });",
+                  "if (pm.response.code === 200) {",
+                  "  const data = pm.response.json();",
+                  "  pm.test('JWT recu', function () { pm.expect(data.token).to.be.a('string').and.not.empty; });",
+                  "  if (typeof data.token === 'string' && data.token) { pm.collectionVariables.set('jwt', data.token); }",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ]
+    },
+    {
+      "name": "Files",
+      "description": "",
+      "item": [
+        {
+          "id": "f322d8f6-b237-44bf-b057-d99512047363",
+          "name": "Deposer un fichier - anonyme",
+          "request": {
+            "name": "Déposer un fichier (anonyme ou authentifié)",
+            "description": "Permet de déposer un fichier avec options facultatives. Si JWT valide fourni, associe le fichier à l’utilisateur. Taille max 1 000 000 000 octets. Extensions interdites configurables côté serveur.\n\n\nImplemente. Seul file est obligatoire. Le mot de passe est desactive par defaut. Aucun JWT ni tag envoye.",
+            "url": {
+              "path": [
+                "files"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": [],
+                  "description": "Choisir un fichier local, maximum 1 000 000 000 octets."
+                },
+                {
+                  "key": "expirationDays",
+                  "type": "text",
+                  "value": "{{expirationDays}}"
+                },
+                {
+                  "key": "password",
+                  "type": "text",
+                  "value": "{{filePassword}}",
+                  "disabled": true,
+                  "description": "Activer pour proteger le fichier."
+                }
+              ]
+            },
+            "auth": {
+              "type": "noauth"
+            }
+          },
+          "response": [
+            {
+              "id": "c64d4124-783f-4dd8-9d7d-361fafe6d6fb",
+              "name": "Fichier déposé avec succès",
+              "originalRequest": {
+                "name": "Déposer un fichier (anonyme ou authentifié)",
+                "description": "Permet de déposer un fichier avec options facultatives. Si JWT valide fourni, associe le fichier à l’utilisateur. Taille max 1 000 000 000 octets. Extensions interdites configurables côté serveur.\n\n\nImplemente. Seul file est obligatoire. Le mot de passe est desactive par defaut. Aucun JWT ni tag envoye.",
+                "url": {
+                  "path": [
+                    "files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "file",
+                      "type": "file",
+                      "src": [],
+                      "description": "Choisir un fichier local, maximum 1 000 000 000 octets."
+                    },
+                    {
+                      "key": "expirationDays",
+                      "type": "text",
+                      "value": "{{expirationDays}}"
+                    },
+                    {
+                      "key": "password",
+                      "type": "text",
+                      "value": "{{filePassword}}",
+                      "disabled": true,
+                      "description": "Activer pour proteger le fichier."
+                    }
+                  ]
+                },
+                "auth": {
+                  "type": "noauth"
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"metadata\": {\n    \"id\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\n    \"name\": \"photo.png\",\n    \"size\": 204800,\n    \"uploadDate\": \"2024-06-01T15:30:00Z\",\n    \"expirationDate\": \"2024-06-08T15:30:00Z\",\n    \"linkStatus\": \"active\",\n    \"tags\": [\n      \"vacances\",\n      \"famille\"\n    ],\n    \"downloadLink\": \"https://example.com/api/shares/abc123token\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "69aded45-0165-4b98-ad6b-c0755c643fb8",
+              "name": "Requête invalide (400)",
+              "originalRequest": {
+                "name": "Déposer un fichier (anonyme ou authentifié)",
+                "description": "Permet de déposer un fichier avec options facultatives. Si JWT valide fourni, associe le fichier à l’utilisateur. Taille max 1 000 000 000 octets. Extensions interdites configurables côté serveur.\n\n\nImplemente. Seul file est obligatoire. Le mot de passe est desactive par defaut. Aucun JWT ni tag envoye.",
+                "url": {
+                  "path": [
+                    "files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "file",
+                      "type": "file",
+                      "src": [],
+                      "description": "Choisir un fichier local, maximum 1 000 000 000 octets."
+                    },
+                    {
+                      "key": "expirationDays",
+                      "type": "text",
+                      "value": "{{expirationDays}}"
+                    },
+                    {
+                      "key": "password",
+                      "type": "text",
+                      "value": "{{filePassword}}",
+                      "disabled": true,
+                      "description": "Activer pour proteger le fichier."
+                    }
+                  ]
+                },
+                "auth": {
+                  "type": "noauth"
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 401,\n  \"message\": \"Authentification requise\",\n  \"timestamp\": \"2024-06-01T16:00:00Z\",\n  \"fieldErrors\": [\n    {\n      \"field\": \"password\",\n      \"message\": \"Le mot de passe doit contenir au moins 8 caractères\"\n    },\n    {\n      \"field\": \"password\",\n      \"message\": \"Le mot de passe doit contenir au moins 8 caractères\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ac080df7-b2d1-4a81-bf5c-c65263382f54",
+              "name": "JWT fourni invalide",
+              "originalRequest": {
+                "name": "Déposer un fichier (anonyme ou authentifié)",
+                "description": "Permet de déposer un fichier avec options facultatives. Si JWT valide fourni, associe le fichier à l’utilisateur. Taille max 1 000 000 000 octets. Extensions interdites configurables côté serveur.\n\n\nImplemente. Seul file est obligatoire. Le mot de passe est desactive par defaut. Aucun JWT ni tag envoye.",
+                "url": {
+                  "path": [
+                    "files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "file",
+                      "type": "file",
+                      "src": [],
+                      "description": "Choisir un fichier local, maximum 1 000 000 000 octets."
+                    },
+                    {
+                      "key": "expirationDays",
+                      "type": "text",
+                      "value": "{{expirationDays}}"
+                    },
+                    {
+                      "key": "password",
+                      "type": "text",
+                      "value": "{{filePassword}}",
+                      "disabled": true,
+                      "description": "Activer pour proteger le fichier."
+                    }
+                  ]
+                },
+                "auth": {
+                  "type": "noauth"
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 401,\n  \"message\": \"Authentification requise\",\n  \"timestamp\": \"2024-06-01T16:00:00Z\",\n  \"fieldErrors\": [\n    {\n      \"field\": \"password\",\n      \"message\": \"Le mot de passe doit contenir au moins 8 caractères\"\n    },\n    {\n      \"field\": \"password\",\n      \"message\": \"Le mot de passe doit contenir au moins 8 caractères\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b0ee8149-3daf-4c2e-8480-398325a5098e",
+              "name": "Fichier trop volumineux",
+              "originalRequest": {
+                "name": "Déposer un fichier (anonyme ou authentifié)",
+                "description": "Permet de déposer un fichier avec options facultatives. Si JWT valide fourni, associe le fichier à l’utilisateur. Taille max 1 000 000 000 octets. Extensions interdites configurables côté serveur.\n\n\nImplemente. Seul file est obligatoire. Le mot de passe est desactive par defaut. Aucun JWT ni tag envoye.",
+                "url": {
+                  "path": [
+                    "files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "file",
+                      "type": "file",
+                      "src": [],
+                      "description": "Choisir un fichier local, maximum 1 000 000 000 octets."
+                    },
+                    {
+                      "key": "expirationDays",
+                      "type": "text",
+                      "value": "{{expirationDays}}"
+                    },
+                    {
+                      "key": "password",
+                      "type": "text",
+                      "value": "{{filePassword}}",
+                      "disabled": true,
+                      "description": "Activer pour proteger le fichier."
+                    }
+                  ]
+                },
+                "auth": {
+                  "type": "noauth"
+                }
+              },
+              "status": "Request Entity Too Large",
+              "code": 413,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 401,\n  \"message\": \"Authentification requise\",\n  \"timestamp\": \"2024-06-01T16:00:00Z\",\n  \"fieldErrors\": [\n    {\n      \"field\": \"password\",\n      \"message\": \"Le mot de passe doit contenir au moins 8 caractères\"\n    },\n    {\n      \"field\": \"password\",\n      \"message\": \"Le mot de passe doit contenir au moins 8 caractères\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "054adb37-cd2b-49f5-9f16-da1af91bc26f",
+              "name": "Type de fichier non supporté (extension interdite)",
+              "originalRequest": {
+                "name": "Déposer un fichier (anonyme ou authentifié)",
+                "description": "Permet de déposer un fichier avec options facultatives. Si JWT valide fourni, associe le fichier à l’utilisateur. Taille max 1 000 000 000 octets. Extensions interdites configurables côté serveur.\n\n\nImplemente. Seul file est obligatoire. Le mot de passe est desactive par defaut. Aucun JWT ni tag envoye.",
+                "url": {
+                  "path": [
+                    "files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "file",
+                      "type": "file",
+                      "src": [],
+                      "description": "Choisir un fichier local, maximum 1 000 000 000 octets."
+                    },
+                    {
+                      "key": "expirationDays",
+                      "type": "text",
+                      "value": "{{expirationDays}}"
+                    },
+                    {
+                      "key": "password",
+                      "type": "text",
+                      "value": "{{filePassword}}",
+                      "disabled": true,
+                      "description": "Activer pour proteger le fichier."
+                    }
+                  ]
+                },
+                "auth": {
+                  "type": "noauth"
+                }
+              },
+              "status": "Unsupported Media Type",
+              "code": 415,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 401,\n  \"message\": \"Authentification requise\",\n  \"timestamp\": \"2024-06-01T16:00:00Z\",\n  \"fieldErrors\": [\n    {\n      \"field\": \"password\",\n      \"message\": \"Le mot de passe doit contenir au moins 8 caractères\"\n    },\n    {\n      \"field\": \"password\",\n      \"message\": \"Le mot de passe doit contenir au moins 8 caractères\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Statut HTTP 201', function () { pm.response.to.have.status(201); });",
+                  "if (pm.response.code === 201) {",
+                  "  const metadata = pm.response.json().metadata;",
+                  "  pm.test('Metadonnees recues', function () {",
+                  "    pm.expect(metadata).to.have.property('id');",
+                  "    pm.expect(metadata).to.have.property('downloadLink');",
+                  "  });",
+                  "  if (metadata && metadata.id) { pm.collectionVariables.set('fileId', metadata.id); }",
+                  "  if (metadata && metadata.downloadLink) {",
+                  "    pm.collectionVariables.set('downloadLink', metadata.downloadLink);",
+                  "    const sharedPath = metadata.downloadLink.split('/shares/')[1];",
+                  "    pm.collectionVariables.set('shareToken', sharedPath ? decodeURIComponent(sharedPath.split(/[?#]/)[0]) : '');",
+                  "  }",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e1984773-309b-4daa-b599-2744c455f91e",
+          "name": "Deposer un fichier - authentifie",
+          "request": {
+            "name": "Déposer un fichier (anonyme ou authentifié)",
+            "description": "Implemente. Envoie Authorization: Bearer {{jwt}}. Le fichier est associe au compte connecte ; tags facultatifs sous forme de champs texte repetes. Choisir un fichier dans Body > form-data > file. Activer password pour proteger le fichier. Memorise fileId, shareToken et downloadLink apres un upload reussi.",
+            "url": {
+              "path": [
+                "files"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": [],
+                  "description": "Choisir un fichier local, maximum 1 000 000 000 octets."
+                },
+                {
+                  "key": "expirationDays",
+                  "type": "text",
+                  "value": "{{expirationDays}}"
+                },
+                {
+                  "key": "password",
+                  "type": "text",
+                  "value": "{{filePassword}}",
+                  "disabled": true,
+                  "description": "Activer pour proteger le fichier."
+                },
+                {
+                  "key": "tags",
+                  "type": "text",
+                  "value": "projet"
+                },
+                {
+                  "key": "tags",
+                  "type": "text",
+                  "value": "confidentiel"
+                }
+              ]
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwt}}",
+                  "type": "string"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c64d4124-783f-4dd8-9d7d-361fafe6d6fb",
+              "name": "Fichier déposé avec succès",
+              "originalRequest": {
+                "name": "Déposer un fichier (anonyme ou authentifié)",
+                "description": "Implemente. Envoie Authorization: Bearer {{jwt}}. Le fichier est associe au compte connecte ; tags facultatifs sous forme de champs texte repetes. Choisir un fichier dans Body > form-data > file. Activer password pour proteger le fichier. Memorise fileId, shareToken et downloadLink apres un upload reussi.",
+                "url": {
+                  "path": [
+                    "files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "file",
+                      "type": "file",
+                      "src": [],
+                      "description": "Choisir un fichier local, maximum 1 000 000 000 octets."
+                    },
+                    {
+                      "key": "expirationDays",
+                      "type": "text",
+                      "value": "{{expirationDays}}"
+                    },
+                    {
+                      "key": "password",
+                      "type": "text",
+                      "value": "{{filePassword}}",
+                      "disabled": true,
+                      "description": "Activer pour proteger le fichier."
+                    },
+                    {
+                      "key": "tags",
+                      "type": "text",
+                      "value": "projet"
+                    },
+                    {
+                      "key": "tags",
+                      "type": "text",
+                      "value": "confidentiel"
+                    }
+                  ]
+                },
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{jwt}}",
+                      "type": "string"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"metadata\": {\n    \"id\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\n    \"name\": \"photo.png\",\n    \"size\": 204800,\n    \"uploadDate\": \"2024-06-01T15:30:00Z\",\n    \"expirationDate\": \"2024-06-08T15:30:00Z\",\n    \"linkStatus\": \"active\",\n    \"tags\": [\n      \"vacances\",\n      \"famille\"\n    ],\n    \"downloadLink\": \"https://example.com/api/shares/abc123token\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "69aded45-0165-4b98-ad6b-c0755c643fb8",
+              "name": "Requête invalide (400)",
+              "originalRequest": {
+                "name": "Déposer un fichier (anonyme ou authentifié)",
+                "description": "Implemente. Envoie Authorization: Bearer {{jwt}}. Le fichier est associe au compte connecte ; tags facultatifs sous forme de champs texte repetes. Choisir un fichier dans Body > form-data > file. Activer password pour proteger le fichier. Memorise fileId, shareToken et downloadLink apres un upload reussi.",
+                "url": {
+                  "path": [
+                    "files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "file",
+                      "type": "file",
+                      "src": [],
+                      "description": "Choisir un fichier local, maximum 1 000 000 000 octets."
+                    },
+                    {
+                      "key": "expirationDays",
+                      "type": "text",
+                      "value": "{{expirationDays}}"
+                    },
+                    {
+                      "key": "password",
+                      "type": "text",
+                      "value": "{{filePassword}}",
+                      "disabled": true,
+                      "description": "Activer pour proteger le fichier."
+                    },
+                    {
+                      "key": "tags",
+                      "type": "text",
+                      "value": "projet"
+                    },
+                    {
+                      "key": "tags",
+                      "type": "text",
+                      "value": "confidentiel"
+                    }
+                  ]
+                },
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{jwt}}",
+                      "type": "string"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 401,\n  \"message\": \"Authentification requise\",\n  \"timestamp\": \"2024-06-01T16:00:00Z\",\n  \"fieldErrors\": [\n    {\n      \"field\": \"password\",\n      \"message\": \"Le mot de passe doit contenir au moins 8 caractères\"\n    },\n    {\n      \"field\": \"password\",\n      \"message\": \"Le mot de passe doit contenir au moins 8 caractères\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ac080df7-b2d1-4a81-bf5c-c65263382f54",
+              "name": "JWT fourni invalide",
+              "originalRequest": {
+                "name": "Déposer un fichier (anonyme ou authentifié)",
+                "description": "Implemente. Envoie Authorization: Bearer {{jwt}}. Le fichier est associe au compte connecte ; tags facultatifs sous forme de champs texte repetes. Choisir un fichier dans Body > form-data > file. Activer password pour proteger le fichier. Memorise fileId, shareToken et downloadLink apres un upload reussi.",
+                "url": {
+                  "path": [
+                    "files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "file",
+                      "type": "file",
+                      "src": [],
+                      "description": "Choisir un fichier local, maximum 1 000 000 000 octets."
+                    },
+                    {
+                      "key": "expirationDays",
+                      "type": "text",
+                      "value": "{{expirationDays}}"
+                    },
+                    {
+                      "key": "password",
+                      "type": "text",
+                      "value": "{{filePassword}}",
+                      "disabled": true,
+                      "description": "Activer pour proteger le fichier."
+                    },
+                    {
+                      "key": "tags",
+                      "type": "text",
+                      "value": "projet"
+                    },
+                    {
+                      "key": "tags",
+                      "type": "text",
+                      "value": "confidentiel"
+                    }
+                  ]
+                },
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{jwt}}",
+                      "type": "string"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 401,\n  \"message\": \"Authentification requise\",\n  \"timestamp\": \"2024-06-01T16:00:00Z\",\n  \"fieldErrors\": [\n    {\n      \"field\": \"password\",\n      \"message\": \"Le mot de passe doit contenir au moins 8 caractères\"\n    },\n    {\n      \"field\": \"password\",\n      \"message\": \"Le mot de passe doit contenir au moins 8 caractères\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b0ee8149-3daf-4c2e-8480-398325a5098e",
+              "name": "Fichier trop volumineux",
+              "originalRequest": {
+                "name": "Déposer un fichier (anonyme ou authentifié)",
+                "description": "Implemente. Envoie Authorization: Bearer {{jwt}}. Le fichier est associe au compte connecte ; tags facultatifs sous forme de champs texte repetes. Choisir un fichier dans Body > form-data > file. Activer password pour proteger le fichier. Memorise fileId, shareToken et downloadLink apres un upload reussi.",
+                "url": {
+                  "path": [
+                    "files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "file",
+                      "type": "file",
+                      "src": [],
+                      "description": "Choisir un fichier local, maximum 1 000 000 000 octets."
+                    },
+                    {
+                      "key": "expirationDays",
+                      "type": "text",
+                      "value": "{{expirationDays}}"
+                    },
+                    {
+                      "key": "password",
+                      "type": "text",
+                      "value": "{{filePassword}}",
+                      "disabled": true,
+                      "description": "Activer pour proteger le fichier."
+                    },
+                    {
+                      "key": "tags",
+                      "type": "text",
+                      "value": "projet"
+                    },
+                    {
+                      "key": "tags",
+                      "type": "text",
+                      "value": "confidentiel"
+                    }
+                  ]
+                },
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{jwt}}",
+                      "type": "string"
+                    }
+                  ]
+                }
+              },
+              "status": "Request Entity Too Large",
+              "code": 413,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 401,\n  \"message\": \"Authentification requise\",\n  \"timestamp\": \"2024-06-01T16:00:00Z\",\n  \"fieldErrors\": [\n    {\n      \"field\": \"password\",\n      \"message\": \"Le mot de passe doit contenir au moins 8 caractères\"\n    },\n    {\n      \"field\": \"password\",\n      \"message\": \"Le mot de passe doit contenir au moins 8 caractères\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "054adb37-cd2b-49f5-9f16-da1af91bc26f",
+              "name": "Type de fichier non supporté (extension interdite)",
+              "originalRequest": {
+                "name": "Déposer un fichier (anonyme ou authentifié)",
+                "description": "Implemente. Envoie Authorization: Bearer {{jwt}}. Le fichier est associe au compte connecte ; tags facultatifs sous forme de champs texte repetes. Choisir un fichier dans Body > form-data > file. Activer password pour proteger le fichier. Memorise fileId, shareToken et downloadLink apres un upload reussi.",
+                "url": {
+                  "path": [
+                    "files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "file",
+                      "type": "file",
+                      "src": [],
+                      "description": "Choisir un fichier local, maximum 1 000 000 000 octets."
+                    },
+                    {
+                      "key": "expirationDays",
+                      "type": "text",
+                      "value": "{{expirationDays}}"
+                    },
+                    {
+                      "key": "password",
+                      "type": "text",
+                      "value": "{{filePassword}}",
+                      "disabled": true,
+                      "description": "Activer pour proteger le fichier."
+                    },
+                    {
+                      "key": "tags",
+                      "type": "text",
+                      "value": "projet"
+                    },
+                    {
+                      "key": "tags",
+                      "type": "text",
+                      "value": "confidentiel"
+                    }
+                  ]
+                },
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{jwt}}",
+                      "type": "string"
+                    }
+                  ]
+                }
+              },
+              "status": "Unsupported Media Type",
+              "code": 415,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 401,\n  \"message\": \"Authentification requise\",\n  \"timestamp\": \"2024-06-01T16:00:00Z\",\n  \"fieldErrors\": [\n    {\n      \"field\": \"password\",\n      \"message\": \"Le mot de passe doit contenir au moins 8 caractères\"\n    },\n    {\n      \"field\": \"password\",\n      \"message\": \"Le mot de passe doit contenir au moins 8 caractères\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Statut HTTP 201', function () { pm.response.to.have.status(201); });",
+                  "if (pm.response.code === 201) {",
+                  "  const metadata = pm.response.json().metadata;",
+                  "  pm.test('Metadonnees recues', function () {",
+                  "    pm.expect(metadata).to.have.property('id');",
+                  "    pm.expect(metadata).to.have.property('downloadLink');",
+                  "  });",
+                  "  if (metadata && metadata.id) { pm.collectionVariables.set('fileId', metadata.id); }",
+                  "  if (metadata && metadata.downloadLink) {",
+                  "    pm.collectionVariables.set('downloadLink', metadata.downloadLink);",
+                  "    const sharedPath = metadata.downloadLink.split('/shares/')[1];",
+                  "    pm.collectionVariables.set('shareToken', sharedPath ? decodeURIComponent(sharedPath.split(/[?#]/)[0]) : '');",
+                  "  }",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "18b3f14c-244c-4903-b210-c0879f20f9af",
+          "name": "Lister les fichiers déposés par l’utilisateur",
+          "request": {
+            "name": "Lister les fichiers déposés par l’utilisateur",
+            "description": "Retourne l’historique des fichiers non expirés de l’utilisateur authentifié.\n\n\nNON IMPLEMENTE dans le backend actuel : reponse HTTP 501 apres authentification si necessaire. Requete conservee pour couvrir le contrat Swagger.",
+            "url": {
+              "path": [
+                "files"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {},
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwt}}",
+                  "type": "string"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b4578589-0020-4b7a-96b6-680e40c885ba",
+              "name": "Liste des fichiers de l’utilisateur",
+              "originalRequest": {
+                "name": "Lister les fichiers déposés par l’utilisateur",
+                "description": "Retourne l’historique des fichiers non expirés de l’utilisateur authentifié.\n\n\nNON IMPLEMENTE dans le backend actuel : reponse HTTP 501 apres authentification si necessaire. Requete conservee pour couvrir le contrat Swagger.",
+                "url": {
+                  "path": [
+                    "files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {},
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{jwt}}",
+                      "type": "string"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\n    \"name\": \"photo.png\",\n    \"size\": 204800,\n    \"uploadDate\": \"2024-06-01T15:30:00Z\",\n    \"expirationDate\": \"2024-06-08T15:30:00Z\",\n    \"linkStatus\": \"active\",\n    \"tags\": [\n      \"vacances\",\n      \"famille\"\n    ],\n    \"downloadLink\": \"https://example.com/api/shares/abc123token\"\n  },\n  {\n    \"id\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\n    \"name\": \"photo.png\",\n    \"size\": 204800,\n    \"uploadDate\": \"2024-06-01T15:30:00Z\",\n    \"expirationDate\": \"2024-06-08T15:30:00Z\",\n    \"linkStatus\": \"active\",\n    \"tags\": [\n      \"vacances\",\n      \"famille\"\n    ],\n    \"downloadLink\": \"https://example.com/api/shares/abc123token\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "30e91437-e728-4cf3-8890-3b2cea84de98",
+              "name": "Authentification absente ou invalide (401)",
+              "originalRequest": {
+                "name": "Lister les fichiers déposés par l’utilisateur",
+                "description": "Retourne l’historique des fichiers non expirés de l’utilisateur authentifié.\n\n\nNON IMPLEMENTE dans le backend actuel : reponse HTTP 501 apres authentification si necessaire. Requete conservee pour couvrir le contrat Swagger.",
+                "url": {
+                  "path": [
+                    "files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {},
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{jwt}}",
+                      "type": "string"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 401,\n  \"message\": \"Authentification requise\",\n  \"timestamp\": \"2024-06-01T16:00:00Z\",\n  \"fieldErrors\": [\n    {\n      \"field\": \"password\",\n      \"message\": \"Le mot de passe doit contenir au moins 8 caractères\"\n    },\n    {\n      \"field\": \"password\",\n      \"message\": \"Le mot de passe doit contenir au moins 8 caractères\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c156e975-3de8-44d8-80a7-d2f7dfb15443",
+          "name": "Supprimer un fichier dont on est propriétaire",
+          "request": {
+            "name": "Supprimer un fichier dont on est propriétaire",
+            "description": "Supprime définitivement le fichier physique, ses métadonnées et associations.\n\n\nNON IMPLEMENTE dans le backend actuel : reponse HTTP 501 apres authentification si necessaire. Requete conservee pour couvrir le contrat Swagger.",
+            "url": {
+              "path": [
+                "files",
+                ":fileId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "type": "any",
+                  "value": "{{fileId}}",
+                  "key": "fileId",
+                  "disabled": false,
+                  "description": {
+                    "content": "(Required) Identifiant unique du fichier",
+                    "type": "text/plain"
+                  }
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "body": {},
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwt}}",
+                  "type": "string"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "4e37e7c5-8913-4725-9dc9-0c401b90710a",
+              "name": "Fichier supprimé avec succès",
+              "originalRequest": {
+                "name": "Supprimer un fichier dont on est propriétaire",
+                "description": "Supprime définitivement le fichier physique, ses métadonnées et associations.\n\n\nNON IMPLEMENTE dans le backend actuel : reponse HTTP 501 apres authentification si necessaire. Requete conservee pour couvrir le contrat Swagger.",
+                "url": {
+                  "path": [
+                    "files",
+                    ":fileId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "type": "any",
+                      "value": "{{fileId}}",
+                      "key": "fileId",
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Identifiant unique du fichier",
+                        "type": "text/plain"
+                      }
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {},
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{jwt}}",
+                      "type": "string"
+                    }
+                  ]
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [],
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "df58b656-a748-4816-9db9-52f1b685dce8",
+              "name": "Authentification absente ou invalide (401)",
+              "originalRequest": {
+                "name": "Supprimer un fichier dont on est propriétaire",
+                "description": "Supprime définitivement le fichier physique, ses métadonnées et associations.\n\n\nNON IMPLEMENTE dans le backend actuel : reponse HTTP 501 apres authentification si necessaire. Requete conservee pour couvrir le contrat Swagger.",
+                "url": {
+                  "path": [
+                    "files",
+                    ":fileId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "type": "any",
+                      "value": "{{fileId}}",
+                      "key": "fileId",
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Identifiant unique du fichier",
+                        "type": "text/plain"
+                      }
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {},
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{jwt}}",
+                      "type": "string"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 401,\n  \"message\": \"Authentification requise\",\n  \"timestamp\": \"2024-06-01T16:00:00Z\",\n  \"fieldErrors\": [\n    {\n      \"field\": \"password\",\n      \"message\": \"Le mot de passe doit contenir au moins 8 caractères\"\n    },\n    {\n      \"field\": \"password\",\n      \"message\": \"Le mot de passe doit contenir au moins 8 caractères\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "54eafa26-7af8-4739-835b-7935a07cbff6",
+              "name": "Accès interdit (non propriétaire)",
+              "originalRequest": {
+                "name": "Supprimer un fichier dont on est propriétaire",
+                "description": "Supprime définitivement le fichier physique, ses métadonnées et associations.\n\n\nNON IMPLEMENTE dans le backend actuel : reponse HTTP 501 apres authentification si necessaire. Requete conservee pour couvrir le contrat Swagger.",
+                "url": {
+                  "path": [
+                    "files",
+                    ":fileId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "type": "any",
+                      "value": "{{fileId}}",
+                      "key": "fileId",
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Identifiant unique du fichier",
+                        "type": "text/plain"
+                      }
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {},
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{jwt}}",
+                      "type": "string"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 401,\n  \"message\": \"Authentification requise\",\n  \"timestamp\": \"2024-06-01T16:00:00Z\",\n  \"fieldErrors\": [\n    {\n      \"field\": \"password\",\n      \"message\": \"Le mot de passe doit contenir au moins 8 caractères\"\n    },\n    {\n      \"field\": \"password\",\n      \"message\": \"Le mot de passe doit contenir au moins 8 caractères\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "717ba632-8edc-484b-92f8-bf4c51d52a6b",
+              "name": "Fichier introuvable (ou déjà supprimé)",
+              "originalRequest": {
+                "name": "Supprimer un fichier dont on est propriétaire",
+                "description": "Supprime définitivement le fichier physique, ses métadonnées et associations.\n\n\nNON IMPLEMENTE dans le backend actuel : reponse HTTP 501 apres authentification si necessaire. Requete conservee pour couvrir le contrat Swagger.",
+                "url": {
+                  "path": [
+                    "files",
+                    ":fileId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "type": "any",
+                      "value": "{{fileId}}",
+                      "key": "fileId",
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Identifiant unique du fichier",
+                        "type": "text/plain"
+                      }
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {},
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{jwt}}",
+                      "type": "string"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 401,\n  \"message\": \"Authentification requise\",\n  \"timestamp\": \"2024-06-01T16:00:00Z\",\n  \"fieldErrors\": [\n    {\n      \"field\": \"password\",\n      \"message\": \"Le mot de passe doit contenir au moins 8 caractères\"\n    },\n    {\n      \"field\": \"password\",\n      \"message\": \"Le mot de passe doit contenir au moins 8 caractères\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f4756c24-dc54-4e48-82f5-209bd806fd76",
+          "name": "Remplacer les tags d’un fichier",
+          "request": {
+            "name": "Remplacer les tags d’un fichier",
+            "description": "Remplace la liste des tags du fichier. Tags uniques, max 30 caractères chacun.\n\n\nNON IMPLEMENTE dans le backend actuel : reponse HTTP 501 apres authentification si necessaire. Requete conservee pour couvrir le contrat Swagger.",
+            "url": {
+              "path": [
+                "files",
+                ":fileId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "type": "any",
+                  "value": "{{fileId}}",
+                  "key": "fileId",
+                  "disabled": false,
+                  "description": {
+                    "content": "(Required) Identifiant unique du fichier",
+                    "type": "text/plain"
+                  }
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tags\": [\n    \"projet\",\n    \"confidentiel\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwt}}",
+                  "type": "string"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "6a26932e-47ec-403e-9f2c-e6ae5a9f20bb",
+              "name": "Tags mis à jour avec succès",
+              "originalRequest": {
+                "name": "Remplacer les tags d’un fichier",
+                "description": "Remplace la liste des tags du fichier. Tags uniques, max 30 caractères chacun.\n\n\nNON IMPLEMENTE dans le backend actuel : reponse HTTP 501 apres authentification si necessaire. Requete conservee pour couvrir le contrat Swagger.",
+                "url": {
+                  "path": [
+                    "files",
+                    ":fileId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "type": "any",
+                      "value": "{{fileId}}",
+                      "key": "fileId",
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Identifiant unique du fichier",
+                        "type": "text/plain"
+                      }
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tags\": [\n    \"projet\",\n    \"confidentiel\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{jwt}}",
+                      "type": "string"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\n  \"name\": \"photo.png\",\n  \"size\": 204800,\n  \"uploadDate\": \"2024-06-01T15:30:00Z\",\n  \"expirationDate\": \"2024-06-08T15:30:00Z\",\n  \"linkStatus\": \"active\",\n  \"tags\": [\n    \"vacances\",\n    \"famille\"\n  ],\n  \"downloadLink\": \"https://example.com/api/shares/abc123token\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4f0dc6b0-c986-4056-a540-71313b091f00",
+              "name": "Requête invalide (400)",
+              "originalRequest": {
+                "name": "Remplacer les tags d’un fichier",
+                "description": "Remplace la liste des tags du fichier. Tags uniques, max 30 caractères chacun.\n\n\nNON IMPLEMENTE dans le backend actuel : reponse HTTP 501 apres authentification si necessaire. Requete conservee pour couvrir le contrat Swagger.",
+                "url": {
+                  "path": [
+                    "files",
+                    ":fileId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "type": "any",
+                      "value": "{{fileId}}",
+                      "key": "fileId",
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Identifiant unique du fichier",
+                        "type": "text/plain"
+                      }
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tags\": [\n    \"projet\",\n    \"confidentiel\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{jwt}}",
+                      "type": "string"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 401,\n  \"message\": \"Authentification requise\",\n  \"timestamp\": \"2024-06-01T16:00:00Z\",\n  \"fieldErrors\": [\n    {\n      \"field\": \"password\",\n      \"message\": \"Le mot de passe doit contenir au moins 8 caractères\"\n    },\n    {\n      \"field\": \"password\",\n      \"message\": \"Le mot de passe doit contenir au moins 8 caractères\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9fccfe63-7e23-4ba9-ad6a-3cb5c49b13cc",
+              "name": "Authentification absente ou invalide (401)",
+              "originalRequest": {
+                "name": "Remplacer les tags d’un fichier",
+                "description": "Remplace la liste des tags du fichier. Tags uniques, max 30 caractères chacun.\n\n\nNON IMPLEMENTE dans le backend actuel : reponse HTTP 501 apres authentification si necessaire. Requete conservee pour couvrir le contrat Swagger.",
+                "url": {
+                  "path": [
+                    "files",
+                    ":fileId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "type": "any",
+                      "value": "{{fileId}}",
+                      "key": "fileId",
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Identifiant unique du fichier",
+                        "type": "text/plain"
+                      }
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tags\": [\n    \"projet\",\n    \"confidentiel\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{jwt}}",
+                      "type": "string"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 401,\n  \"message\": \"Authentification requise\",\n  \"timestamp\": \"2024-06-01T16:00:00Z\",\n  \"fieldErrors\": [\n    {\n      \"field\": \"password\",\n      \"message\": \"Le mot de passe doit contenir au moins 8 caractères\"\n    },\n    {\n      \"field\": \"password\",\n      \"message\": \"Le mot de passe doit contenir au moins 8 caractères\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2f5d5090-bcb2-4ed1-b978-69b26b31394b",
+              "name": "Accès interdit (non propriétaire)",
+              "originalRequest": {
+                "name": "Remplacer les tags d’un fichier",
+                "description": "Remplace la liste des tags du fichier. Tags uniques, max 30 caractères chacun.\n\n\nNON IMPLEMENTE dans le backend actuel : reponse HTTP 501 apres authentification si necessaire. Requete conservee pour couvrir le contrat Swagger.",
+                "url": {
+                  "path": [
+                    "files",
+                    ":fileId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "type": "any",
+                      "value": "{{fileId}}",
+                      "key": "fileId",
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Identifiant unique du fichier",
+                        "type": "text/plain"
+                      }
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tags\": [\n    \"projet\",\n    \"confidentiel\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{jwt}}",
+                      "type": "string"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 401,\n  \"message\": \"Authentification requise\",\n  \"timestamp\": \"2024-06-01T16:00:00Z\",\n  \"fieldErrors\": [\n    {\n      \"field\": \"password\",\n      \"message\": \"Le mot de passe doit contenir au moins 8 caractères\"\n    },\n    {\n      \"field\": \"password\",\n      \"message\": \"Le mot de passe doit contenir au moins 8 caractères\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f7242d63-8430-4a16-b3e2-e963e2f5cb5d",
+              "name": "Fichier introuvable",
+              "originalRequest": {
+                "name": "Remplacer les tags d’un fichier",
+                "description": "Remplace la liste des tags du fichier. Tags uniques, max 30 caractères chacun.\n\n\nNON IMPLEMENTE dans le backend actuel : reponse HTTP 501 apres authentification si necessaire. Requete conservee pour couvrir le contrat Swagger.",
+                "url": {
+                  "path": [
+                    "files",
+                    ":fileId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "type": "any",
+                      "value": "{{fileId}}",
+                      "key": "fileId",
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Identifiant unique du fichier",
+                        "type": "text/plain"
+                      }
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tags\": [\n    \"projet\",\n    \"confidentiel\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{jwt}}",
+                      "type": "string"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 401,\n  \"message\": \"Authentification requise\",\n  \"timestamp\": \"2024-06-01T16:00:00Z\",\n  \"fieldErrors\": [\n    {\n      \"field\": \"password\",\n      \"message\": \"Le mot de passe doit contenir au moins 8 caractères\"\n    },\n    {\n      \"field\": \"password\",\n      \"message\": \"Le mot de passe doit contenir au moins 8 caractères\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ]
+    },
+    {
+      "name": "Shares",
+      "description": "",
+      "item": [
+        {
+          "id": "5ee32065-63eb-4ede-b052-48bdc8d34cef",
+          "name": "Consulter les métadonnées d’un fichier partagé via token",
+          "request": {
+            "name": "Consulter les métadonnées d’un fichier partagé via token",
+            "description": "Retourne les métadonnées publiques avant téléchargement. Pas d’authentification requise.\n\n\nNON IMPLEMENTE dans le backend actuel : reponse HTTP 501 apres authentification si necessaire. Requete conservee pour couvrir le contrat Swagger.",
+            "url": {
+              "path": [
+                "shares",
+                ":token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "type": "any",
+                  "value": "{{shareToken}}",
+                  "key": "token",
+                  "disabled": false,
+                  "description": {
+                    "content": "(Required) Token unique de partage",
+                    "type": "text/plain"
+                  }
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {},
+            "auth": {
+              "type": "noauth"
+            }
+          },
+          "response": [
+            {
+              "id": "2bf249f2-efcb-4074-a82a-88e3c4086f79",
+              "name": "Métadonnées du fichier partagé",
+              "originalRequest": {
+                "name": "Consulter les métadonnées d’un fichier partagé via token",
+                "description": "Retourne les métadonnées publiques avant téléchargement. Pas d’authentification requise.\n\n\nNON IMPLEMENTE dans le backend actuel : reponse HTTP 501 apres authentification si necessaire. Requete conservee pour couvrir le contrat Swagger.",
+                "url": {
+                  "path": [
+                    "shares",
+                    ":token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "type": "any",
+                      "value": "{{shareToken}}",
+                      "key": "token",
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Token unique de partage",
+                        "type": "text/plain"
+                      }
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {},
+                "auth": {
+                  "type": "noauth"
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"document.pdf\",\n  \"mimeType\": \"application/pdf\",\n  \"size\": 123456,\n  \"expirationDate\": \"2024-07-01T12:00:00Z\",\n  \"passwordRequired\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2a187c64-5f38-46bd-aaa6-1be67ef66026",
+              "name": "Token introuvable",
+              "originalRequest": {
+                "name": "Consulter les métadonnées d’un fichier partagé via token",
+                "description": "Retourne les métadonnées publiques avant téléchargement. Pas d’authentification requise.\n\n\nNON IMPLEMENTE dans le backend actuel : reponse HTTP 501 apres authentification si necessaire. Requete conservee pour couvrir le contrat Swagger.",
+                "url": {
+                  "path": [
+                    "shares",
+                    ":token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "type": "any",
+                      "value": "{{shareToken}}",
+                      "key": "token",
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Token unique de partage",
+                        "type": "text/plain"
+                      }
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {},
+                "auth": {
+                  "type": "noauth"
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 401,\n  \"message\": \"Authentification requise\",\n  \"timestamp\": \"2024-06-01T16:00:00Z\",\n  \"fieldErrors\": [\n    {\n      \"field\": \"password\",\n      \"message\": \"Le mot de passe doit contenir au moins 8 caractères\"\n    },\n    {\n      \"field\": \"password\",\n      \"message\": \"Le mot de passe doit contenir au moins 8 caractères\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "61b200a5-df32-4f80-a758-931c8cfb2be4",
+              "name": "Lien expiré",
+              "originalRequest": {
+                "name": "Consulter les métadonnées d’un fichier partagé via token",
+                "description": "Retourne les métadonnées publiques avant téléchargement. Pas d’authentification requise.\n\n\nNON IMPLEMENTE dans le backend actuel : reponse HTTP 501 apres authentification si necessaire. Requete conservee pour couvrir le contrat Swagger.",
+                "url": {
+                  "path": [
+                    "shares",
+                    ":token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "type": "any",
+                      "value": "{{shareToken}}",
+                      "key": "token",
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Token unique de partage",
+                        "type": "text/plain"
+                      }
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {},
+                "auth": {
+                  "type": "noauth"
+                }
+              },
+              "status": "Gone",
+              "code": 410,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 401,\n  \"message\": \"Authentification requise\",\n  \"timestamp\": \"2024-06-01T16:00:00Z\",\n  \"fieldErrors\": [\n    {\n      \"field\": \"password\",\n      \"message\": \"Le mot de passe doit contenir au moins 8 caractères\"\n    },\n    {\n      \"field\": \"password\",\n      \"message\": \"Le mot de passe doit contenir au moins 8 caractères\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b1e19ebc-6012-4452-9913-7f01c59e7ce9",
+          "name": "Télécharger le contenu binaire d’un fichier partagé",
+          "request": {
+            "name": "Télécharger le contenu binaire d’un fichier partagé",
+            "description": "Télécharge le fichier via token. Si protégé, le mot de passe doit être fourni dans le corps JSON. Pas d’authentification JWT requise.\n\n\nNON IMPLEMENTE dans le backend actuel : reponse HTTP 501 apres authentification si necessaire. Requete conservee pour couvrir le contrat Swagger.\n\nPour un fichier protege, remplacer le corps par { \"password\": \"{{filePassword}}\" }. Utiliser la commande de Postman permettant d enregistrer la reponse pour conserver le fichier binaire.",
+            "url": {
+              "path": [
+                "shares",
+                ":token",
+                "download"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "type": "any",
+                  "value": "{{shareToken}}",
+                  "key": "token",
+                  "disabled": false,
+                  "description": {
+                    "content": "(Required) Token unique de partage",
+                    "type": "text/plain"
+                  }
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "noauth"
+            }
+          },
+          "response": [
+            {
+              "id": "4a9b8f2e-9e34-4f65-9cd3-61ac12612bc5",
+              "name": "Contenu binaire du fichier",
+              "originalRequest": {
+                "name": "Télécharger le contenu binaire d’un fichier partagé",
+                "description": "Télécharge le fichier via token. Si protégé, le mot de passe doit être fourni dans le corps JSON. Pas d’authentification JWT requise.\n\n\nNON IMPLEMENTE dans le backend actuel : reponse HTTP 501 apres authentification si necessaire. Requete conservee pour couvrir le contrat Swagger.\n\nPour un fichier protege, remplacer le corps par { \"password\": \"{{filePassword}}\" }. Utiliser la commande de Postman permettant d enregistrer la reponse pour conserver le fichier binaire.",
+                "url": {
+                  "path": [
+                    "shares",
+                    ":token",
+                    "download"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "type": "any",
+                      "value": "{{shareToken}}",
+                      "key": "token",
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Token unique de partage",
+                        "type": "text/plain"
+                      }
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "auth": {
+                  "type": "noauth"
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "Indique que la réponse est un fichier à télécharger",
+                    "type": "text/plain"
+                  },
+                  "key": "Content-Disposition",
+                  "value": "attachment; filename=\"document.pdf\""
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b9858fcf-3d62-4994-a007-e8c1e7354ba9",
+              "name": "Requête invalide (400)",
+              "originalRequest": {
+                "name": "Télécharger le contenu binaire d’un fichier partagé",
+                "description": "Télécharge le fichier via token. Si protégé, le mot de passe doit être fourni dans le corps JSON. Pas d’authentification JWT requise.\n\n\nNON IMPLEMENTE dans le backend actuel : reponse HTTP 501 apres authentification si necessaire. Requete conservee pour couvrir le contrat Swagger.\n\nPour un fichier protege, remplacer le corps par { \"password\": \"{{filePassword}}\" }. Utiliser la commande de Postman permettant d enregistrer la reponse pour conserver le fichier binaire.",
+                "url": {
+                  "path": [
+                    "shares",
+                    ":token",
+                    "download"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "type": "any",
+                      "value": "{{shareToken}}",
+                      "key": "token",
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Token unique de partage",
+                        "type": "text/plain"
+                      }
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "auth": {
+                  "type": "noauth"
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 401,\n  \"message\": \"Authentification requise\",\n  \"timestamp\": \"2024-06-01T16:00:00Z\",\n  \"fieldErrors\": [\n    {\n      \"field\": \"password\",\n      \"message\": \"Le mot de passe doit contenir au moins 8 caractères\"\n    },\n    {\n      \"field\": \"password\",\n      \"message\": \"Le mot de passe doit contenir au moins 8 caractères\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fc85bbce-4f98-44a4-ac97-4b688fbe8b7e",
+              "name": "Mot de passe incorrect ou accès interdit",
+              "originalRequest": {
+                "name": "Télécharger le contenu binaire d’un fichier partagé",
+                "description": "Télécharge le fichier via token. Si protégé, le mot de passe doit être fourni dans le corps JSON. Pas d’authentification JWT requise.\n\n\nNON IMPLEMENTE dans le backend actuel : reponse HTTP 501 apres authentification si necessaire. Requete conservee pour couvrir le contrat Swagger.\n\nPour un fichier protege, remplacer le corps par { \"password\": \"{{filePassword}}\" }. Utiliser la commande de Postman permettant d enregistrer la reponse pour conserver le fichier binaire.",
+                "url": {
+                  "path": [
+                    "shares",
+                    ":token",
+                    "download"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "type": "any",
+                      "value": "{{shareToken}}",
+                      "key": "token",
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Token unique de partage",
+                        "type": "text/plain"
+                      }
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "auth": {
+                  "type": "noauth"
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 401,\n  \"message\": \"Authentification requise\",\n  \"timestamp\": \"2024-06-01T16:00:00Z\",\n  \"fieldErrors\": [\n    {\n      \"field\": \"password\",\n      \"message\": \"Le mot de passe doit contenir au moins 8 caractères\"\n    },\n    {\n      \"field\": \"password\",\n      \"message\": \"Le mot de passe doit contenir au moins 8 caractères\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a5dc0f6b-fcd2-41a0-a329-133552fd29f2",
+              "name": "Token introuvable",
+              "originalRequest": {
+                "name": "Télécharger le contenu binaire d’un fichier partagé",
+                "description": "Télécharge le fichier via token. Si protégé, le mot de passe doit être fourni dans le corps JSON. Pas d’authentification JWT requise.\n\n\nNON IMPLEMENTE dans le backend actuel : reponse HTTP 501 apres authentification si necessaire. Requete conservee pour couvrir le contrat Swagger.\n\nPour un fichier protege, remplacer le corps par { \"password\": \"{{filePassword}}\" }. Utiliser la commande de Postman permettant d enregistrer la reponse pour conserver le fichier binaire.",
+                "url": {
+                  "path": [
+                    "shares",
+                    ":token",
+                    "download"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "type": "any",
+                      "value": "{{shareToken}}",
+                      "key": "token",
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Token unique de partage",
+                        "type": "text/plain"
+                      }
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "auth": {
+                  "type": "noauth"
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 401,\n  \"message\": \"Authentification requise\",\n  \"timestamp\": \"2024-06-01T16:00:00Z\",\n  \"fieldErrors\": [\n    {\n      \"field\": \"password\",\n      \"message\": \"Le mot de passe doit contenir au moins 8 caractères\"\n    },\n    {\n      \"field\": \"password\",\n      \"message\": \"Le mot de passe doit contenir au moins 8 caractères\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b90405b3-8a47-4e85-bee2-5a9b55350e10",
+              "name": "Lien expiré",
+              "originalRequest": {
+                "name": "Télécharger le contenu binaire d’un fichier partagé",
+                "description": "Télécharge le fichier via token. Si protégé, le mot de passe doit être fourni dans le corps JSON. Pas d’authentification JWT requise.\n\n\nNON IMPLEMENTE dans le backend actuel : reponse HTTP 501 apres authentification si necessaire. Requete conservee pour couvrir le contrat Swagger.\n\nPour un fichier protege, remplacer le corps par { \"password\": \"{{filePassword}}\" }. Utiliser la commande de Postman permettant d enregistrer la reponse pour conserver le fichier binaire.",
+                "url": {
+                  "path": [
+                    "shares",
+                    ":token",
+                    "download"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "type": "any",
+                      "value": "{{shareToken}}",
+                      "key": "token",
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Token unique de partage",
+                        "type": "text/plain"
+                      }
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "auth": {
+                  "type": "noauth"
+                }
+              },
+              "status": "Gone",
+              "code": 410,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 401,\n  \"message\": \"Authentification requise\",\n  \"timestamp\": \"2024-06-01T16:00:00Z\",\n  \"fieldErrors\": [\n    {\n      \"field\": \"password\",\n      \"message\": \"Le mot de passe doit contenir au moins 8 caractères\"\n    },\n    {\n      \"field\": \"password\",\n      \"message\": \"Le mot de passe doit contenir au moins 8 caractères\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ]
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080/api",
+      "description": "URL de l API, avec le contexte /api et sans slash final.",
+      "type": "string"
+    },
+    {
+      "key": "email",
+      "value": "postman@example.com",
+      "description": "Email de test ; utiliser un email libre pour creer un compte.",
+      "type": "string"
+    },
+    {
+      "key": "userPassword",
+      "value": "StrongPass123",
+      "description": "Mot de passe du compte de test.",
+      "type": "string"
+    },
+    {
+      "key": "jwt",
+      "value": "",
+      "description": "Renseigne automatiquement apres inscription ou connexion.",
+      "type": "string"
+    },
+    {
+      "key": "fileId",
+      "value": "",
+      "description": "UUID du dernier fichier depose.",
+      "type": "string"
+    },
+    {
+      "key": "shareToken",
+      "value": "",
+      "description": "Jeton de partage du dernier fichier depose, distinct du JWT.",
+      "type": "string"
+    },
+    {
+      "key": "downloadLink",
+      "value": "",
+      "description": "Lien retourne apres le dernier upload.",
+      "type": "string"
+    },
+    {
+      "key": "filePassword",
+      "value": "secret123",
+      "description": "Mot de passe facultatif du fichier, distinct du mot de passe du compte.",
+      "type": "string"
+    },
+    {
+      "key": "expirationDays",
+      "value": "7",
+      "description": "Validite du fichier : de 1 a 7 jours.",
+      "type": "string"
+    }
+  ],
+  "info": {
+    "_postman_id": "754ce7e2-17c9-4e9c-b9f5-6fe64d0ba809",
+    "name": "DataShare API - Swagger",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "Collection generee depuis le contrat OpenAPI 3.0.3 DataShare. Les 8 operations Swagger sont presentes, avec une variante supplementaire pour l upload authentifie. Base locale : http://localhost:8080/api. Executer une inscription ou une connexion avant les requetes protegees. Selectionner un fichier dans Body > form-data > file avant un upload. Le JWT, fileId et shareToken sont memorises dans les variables de collection. Les routes non implementees sont signalees dans leur description et renvoient actuellement 501."
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{jwt}}",
+        "type": "string"
+      }
+    ]
+  }
+}
