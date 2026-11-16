@@ -2,3 +2,8 @@
 /uploads/
 .env
 *.log
+.angular
+dist/
+.swagger-codegen/
+.swagger-codegen-ignore
+.angular/cache/

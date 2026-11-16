@@ -1,0 +1,526 @@
+openapi: 3.0.3
+info:
+  title: DataShare API
+  description: API REST sécurisée pour l’application DataShare, permettant la gestion d’authentification, dépôt, historique et partage de fichiers.
+  version: '1.0.0'
+servers:
+  - url: https://{host}/api
+    description: Serveur de production (HTTPS obligatoire)
+    variables:
+      host:
+        default: example.com
+paths:
+  /auth/register:
+    post:
+      tags:
+        - Auth
+      operationId: registerUser
+      summary: Créer un compte utilisateur
+      description: >
+        Enregistre un nouvel utilisateur avec un email unique et un mot de passe sécurisé.
+        Le mot de passe n’est jamais retourné.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterRequest'
+      responses:
+        "201":
+          description: Compte créé avec succès
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+        "400":
+          $ref: '#/components/responses/BadRequest'
+        "409":
+          description: Email déjà utilisé
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+  /auth/login:
+    post:
+      tags:
+        - Auth
+      operationId: loginUser
+      summary: Authentifier un utilisateur et obtenir un JWT
+      description: >
+        Authentifie un utilisateur avec email et mot de passe, retourne un JWT en cas de succès.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+      responses:
+        "200":
+          description: Authentification réussie, JWT retourné
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+        "400":
+          $ref: '#/components/responses/BadRequest'
+        "401":
+          description: Identifiants invalides
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+  /files:
+    post:
+      tags:
+        - Files
+      operationId: uploadFile
+      summary: Déposer un fichier (anonyme ou authentifié)
+      description: >
+        Permet de déposer un fichier avec options facultatives.
+        Si JWT valide fourni, associe le fichier à l’utilisateur.
+        Taille max 1 000 000 000 octets.
+        Extensions interdites configurables côté serveur.
+      security:
+        - {}
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - file
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: Fichier binaire à déposer
+                password:
+                  type: string
+                  minLength: 6
+                  description: Mot de passe facultatif pour protéger le fichier
+                expirationDays:
+                  type: integer
+                  minimum: 1
+                  maximum: 7
+                  default: 7
+                  description: Durée de validité du lien en jours
+                tags:
+                  type: array
+                  items:
+                    type: string
+                    maxLength: 30
+                  uniqueItems: true
+                  description: Liste facultative de tags (uniquement pour utilisateurs authentifiés)
+              additionalProperties: false
+      responses:
+        "201":
+          description: Fichier déposé avec succès
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UploadResponse'
+        "400":
+          $ref: '#/components/responses/BadRequest'
+        "401":
+          description: JWT fourni invalide
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        "413":
+          description: Fichier trop volumineux
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        "415":
+          description: Type de fichier non supporté (extension interdite)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+    get:
+      tags:
+        - Files
+      operationId: listUserFiles
+      summary: Lister les fichiers déposés par l’utilisateur
+      description: >
+        Retourne l’historique des fichiers non expirés de l’utilisateur authentifié.
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: Liste des fichiers de l’utilisateur
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FileMetadata'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+  /files/{fileId}:
+    delete:
+      tags:
+        - Files
+      operationId: deleteUserFile
+      summary: Supprimer un fichier dont on est propriétaire
+      description: >
+        Supprime définitivement le fichier physique, ses métadonnées et associations.
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: fileId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: Identifiant unique du fichier
+      responses:
+        "204":
+          description: Fichier supprimé avec succès
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+        "403":
+          description: Accès interdit (non propriétaire)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        "404":
+          description: Fichier introuvable (ou déjà supprimé)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+    put:
+      tags:
+        - Files
+      operationId: updateFileTags
+      summary: Remplacer les tags d’un fichier
+      description: >
+        Remplace la liste des tags du fichier. Tags uniques, max 30 caractères chacun.
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: fileId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: Identifiant unique du fichier
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateTagsRequest'
+      responses:
+        "200":
+          description: Tags mis à jour avec succès
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileMetadata'
+        "400":
+          $ref: '#/components/responses/BadRequest'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+        "403":
+          description: Accès interdit (non propriétaire)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        "404":
+          description: Fichier introuvable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+  /shares/{token}:
+    get:
+      tags:
+        - Shares
+      operationId: getShareMetadata
+      summary: Consulter les métadonnées d’un fichier partagé via token
+      description: >
+        Retourne les métadonnées publiques avant téléchargement.
+        Pas d’authentification requise.
+      security:
+        - {}
+      parameters:
+        - name: token
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Token unique de partage
+      responses:
+        "200":
+          description: Métadonnées du fichier partagé
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    description: Nom du fichier
+                    example: document.pdf
+                  mimeType:
+                    type: string
+                    description: Type MIME du fichier
+                    example: application/pdf
+                  size:
+                    type: integer
+                    description: Taille en octets
+                    example: 123456
+                  expirationDate:
+                    type: string
+                    format: date-time
+                    description: Date d’expiration du lien
+                    example: '2024-07-01T12:00:00Z'
+                  passwordRequired:
+                    type: boolean
+                    description: Indique si un mot de passe est requis pour le téléchargement
+                    example: true
+        "404":
+          description: Token introuvable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        "410":
+          description: Lien expiré
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+  /shares/{token}/download:
+    post:
+      tags:
+        - Shares
+      operationId: downloadSharedFile
+      summary: Télécharger le contenu binaire d’un fichier partagé
+      description: >
+        Télécharge le fichier via token.
+        Si protégé, le mot de passe doit être fourni dans le corps JSON.
+        Pas d’authentification JWT requise.
+      security:
+        - {}
+      parameters:
+        - name: token
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Token unique de partage
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DownloadRequest'
+      responses:
+        "200":
+          description: Contenu binaire du fichier
+          content:
+            '*/*':
+              schema:
+                type: string
+                format: binary
+          headers:
+            Content-Disposition:
+              description: Indique que la réponse est un fichier à télécharger
+              schema:
+                type: string
+              example: attachment; filename="document.pdf"
+        "400":
+          $ref: '#/components/responses/BadRequest'
+        "403":
+          description: Mot de passe incorrect ou accès interdit
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        "404":
+          description: Token introuvable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        "410":
+          description: Lien expiré
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    RegisterRequest:
+      type: object
+      description: Données pour créer un compte utilisateur
+      required:
+        - email
+        - password
+      properties:
+        email:
+          type: string
+          format: email
+          description: Email unique et valide
+          example: user@example.com
+        password:
+          type: string
+          minLength: 8
+          description: Mot de passe (minimum 8 caractères)
+          example: StrongPass123
+      additionalProperties: false
+    LoginRequest:
+      type: object
+      description: Données pour authentification utilisateur
+      required:
+        - email
+        - password
+      properties:
+        email:
+          type: string
+          format: email
+          example: user@example.com
+        password:
+          type: string
+          example: StrongPass123
+      additionalProperties: false
+    AuthResponse:
+      type: object
+      description: Réponse d’authentification avec JWT
+      properties:
+        token:
+          type: string
+          description: Jeton JWT d’authentification
+          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+    FileMetadata:
+      type: object
+      description: Métadonnées d’un fichier déposé
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Identifiant unique du fichier
+          example: "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+        name:
+          type: string
+          description: Nom original du fichier
+          example: photo.png
+        size:
+          type: integer
+          description: Taille en octets
+          example: 204800
+        uploadDate:
+          type: string
+          format: date-time
+          description: Date d’envoi
+          example: '2024-06-01T15:30:00Z'
+        expirationDate:
+          type: string
+          format: date-time
+          description: Date d’expiration du lien
+          example: '2024-06-08T15:30:00Z'
+        linkStatus:
+          type: string
+          description: "État du lien (ex: active, expired)"
+          example: active
+        tags:
+          type: array
+          items:
+            type: string
+          description: Liste des tags associés
+          example: ["vacances", "famille"]
+        downloadLink:
+          type: string
+          format: uri
+          description: Lien unique de téléchargement (tokenisé)
+          example: https://example.com/api/shares/abc123token
+    UploadResponse:
+      type: object
+      description: Réponse après dépôt de fichier
+      properties:
+        metadata:
+          $ref: '#/components/schemas/FileMetadata'
+    UpdateTagsRequest:
+      type: object
+      description: Requête pour remplacer les tags d’un fichier
+      required:
+        - tags
+      properties:
+        tags:
+          type: array
+          items:
+            type: string
+            maxLength: 30
+          uniqueItems: true
+          description: Nouvelle liste de tags
+          example: ["projet", "confidentiel"]
+      additionalProperties: false
+    DownloadRequest:
+      type: object
+      description: Requête pour téléchargement d’un fichier protégé
+      properties:
+        password:
+          type: string
+          minLength: 6
+          description: Mot de passe du fichier si requis
+          example: secret123
+      additionalProperties: false
+    ApiError:
+      type: object
+      description: Format commun d’erreur API
+      properties:
+        code:
+          type: integer
+          description: Code HTTP de l’erreur
+          example: 401
+        message:
+          type: string
+          description: Message d’erreur descriptif
+          example: "Authentification requise"
+        timestamp:
+          type: string
+          format: date-time
+          description: Date et heure de l’erreur
+          example: '2024-06-01T16:00:00Z'
+        fieldErrors:
+          type: array
+          description: Liste des erreurs de champ (optionnel)
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+                example: password
+              message:
+                type: string
+                example: "Le mot de passe doit contenir au moins 8 caractères"
+      additionalProperties: false
+  responses:
+    BadRequest:
+      description: Requête invalide (400)
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+    Unauthorized:
+      description: Authentification absente ou invalide (401)
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'

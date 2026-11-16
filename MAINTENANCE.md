@@ -182,7 +182,7 @@ respecter le seuil JaCoCo configuré à 80 % de couverture des lignes.
 Pour les tests d'intégration PostgreSQL/Testcontainers :
 
 ```powershell
-mvn test '-Dtest=ApiIntegrationTest,MultipartHttpIntegrationTest' '-Dsurefire.excludes='
+mvn test
 ```
 
 Les tests ne doivent jamais être lancés contre la base de développement : le
@@ -195,9 +195,15 @@ Pour maintenir le frontend associé :
 cd ..\datashare
 npm ci
 npm test
+npm run test:coverage
 npm run cypress:run
 npm audit --audit-level=high
 ```
+
+Résultat Jest frontend vérifié : **10 suites et 34 tests
+passés**. La couverture est de **89,96 % en instructions**, **74,28 % en
+branches**, **92,15 % en fonctions** et **93,15 % en lignes** ; le seuil global de
+70 % configuré dans `jest.config.js` est respecté.
 
 Les détails du plan et des résultats sont centralisés dans
 [TESTING.md](./TESTING.md) et [SECURITY.md](../datashare/SECURITY.md).

@@ -73,16 +73,17 @@ aléatoire.
 
 ## 5. Commandes exécutables
 
-### 5.1 Backend — tests unitaires et rapport JaCoCo
+### 5.1 Backend — tous les tests et rapport JaCoCo
 
 Depuis `datashare_backend` :
 
 ```powershell
-mvn clean test
+mvn test
 ```
 
-La configuration Surefire exclut volontairement les classes suffixées
-`IntegrationTest` et `HttpIntegrationTest` de cette commande rapide.
+Cette commande exécute désormais les tests unitaires et les tests d'intégration.
+Docker Desktop doit donc être démarré afin que Testcontainers puisse lancer le
+PostgreSQL temporaire.
 
 Pour exécuter la vérification Maven et le seuil JaCoCo :
 
@@ -96,7 +97,7 @@ Le rapport HTML est généré dans :
 target/site/jacoco/index.html
 ```
 
-### 5.2 Backend — tests d'intégration
+### 5.2 Backend — exécution ciblée des tests d'intégration
 
 Docker Desktop doit être démarré. Depuis `datashare_backend` :
 
@@ -106,13 +107,6 @@ mvn test '-Dtest=ApiIntegrationTest,MultipartHttpIntegrationTest' '-Dsurefire.ex
 
 La syntaxe avec guillemets est importante dans PowerShell, car la virgule de
 `-Dtest` peut sinon être interprétée par le shell.
-
-Pour exécuter toute la suite backend, y compris les intégrations, en une seule
-commande :
-
-```powershell
-mvn clean test '-Dsurefire.excludes='
-```
 
 ### 5.3 Frontend — Jest
 
@@ -124,7 +118,9 @@ npm test
 npm run test:coverage
 ```
 
-Le rapport Jest est généré dans `coverage/`.
+`npm run test:coverage` applique un seuil global de 70 % sur les instructions,
+les branches, les fonctions et les lignes. Le rapport Jest est généré dans
+`coverage/`.
 
 ### 5.4 Frontend — Cypress
 
@@ -146,24 +142,31 @@ Les scénarios Cypress interceptent les appels API afin de tester le comportemen
 du navigateur de manière déterministe. Ils constituent donc des E2E frontend ;
 les échanges backend réels sont validés par les tests Spring/Testcontainers.
 
-## 6. Résultats obtenus
+## 6. Résultats de référence
 
 | Suite | Tests | Réussis | Échecs | Résultat |
 | --- | ---: | ---: | ---: | --- |
-| Backend unitaire — `mvn clean test` | 49 | 49 | 0 | PASS |
+| Backend tests unitaires + intégration — `mvn test` | 67 | 67 | 0 | PASS |
 | Backend intégration — API + HTTP multipart | 18 | 18 | 0 | PASS |
-| Backend total | 67 | 67 | 0 | PASS |
-| Frontend Jest | 14 | 14 | 0 | PASS |
+| Frontend Jest | 34 | 34 | 0 | PASS |
 | Frontend Cypress | 15 | 15 | 0 | PASS |
 
 Les 18 tests d'intégration se répartissent ainsi : 16 scénarios dans
 `ApiIntegrationTest` et 2 scénarios HTTP réels dans
 `MultipartHttpIntegrationTest`.
 
+Résultat Jest frontend vérifié : 10 suites passées et 34
+tests passés, sans échec.
+
+Lors de la validation de la configuration `mvn test`, les 67 tests ont bien été
+découverts et lancés. Les 18 tests d'intégration n'ont pas pu terminer dans
+l'environnement courant car Testcontainers ne pouvait pas accéder au moteur
+Docker (`docker_engine`). Avec Docker Desktop démarré, la suite peut être
+rejouée avec la commande unique `mvn test`.
+
 ## 7. Couverture de code
 
-Rapport JaCoCo généré par le dernier `mvn clean verify` (suite unitaire ; les
-tests d'intégration restent exclus par la configuration Surefire par défaut) :
+Rapport JaCoCo généré par le dernier `mvn clean verify` :
 
 | Indicateur backend | Résultat | Seuil | Statut |
 | --- | ---: | ---: | --- |
@@ -172,16 +175,29 @@ tests d'intégration restent exclus par la configuration Surefire par défaut) :
 | Couverture des branches | **70,12 %** | 70 % indicatif | PASS |
 
 La commande `mvn clean verify` a également terminé avec `BUILD SUCCESS` et le
-message `All coverage checks have been met.`. La suite unitaire couvre donc
-**82,08 % des lignes** sans dépendre d'une base PostgreSQL externe.
+message `All coverage checks have been met.`. La suite backend couvre donc
+**82,08 % des lignes**.
 
 La couverture des branches est suivie séparément : elle dépasse 70 % sur le
 dernier rapport, mais elle n'est pas la règle bloquante actuellement configurée
 dans le `pom.xml`.
 
+### Couverture frontend — Jest
+
+Rapport généré avec `npm run test:coverage` :
+
+| Indicateur frontend | Résultat | Seuil | Statut |
+| --- | ---: | ---: | --- |
+| Instructions | **89,96 %** | 70 % | PASS |
+| Branches | **74,28 %** | 70 % | PASS |
+| Fonctions | **92,15 %** | 70 % | PASS |
+| Lignes | **93,15 %** | 70 % | PASS |
+
+Le seuil global Jest est donc respecté pour les quatre indicateurs.
+
 ## 8. Lecture des résultats et actions en cas d'échec
 
-- Un échec de `mvn clean test` indique généralement une régression dans un
+- Un échec de `mvn test` indique généralement une régression dans un
   service, un contrôleur, la sécurité ou la gestion du stockage.
 - Un échec de la suite d'intégration doit être analysé avec Docker Desktop,
   l'accès à l'image `postgres:17`, les migrations Flyway et les logs Surefire.

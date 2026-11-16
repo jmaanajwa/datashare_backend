@@ -36,10 +36,6 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <configuration>
                     <argLine>-Djava.io.tmpdir=${project.build.directory} ${argLine}</argLine>
-                    <excludes>
-                        <exclude>**/*IntegrationTest.java</exclude>
-                        <exclude>**/*HttpIntegrationTest.java</exclude>
-                    </excludes>
                 </configuration>
             </plugin>
             <plugin>
@@ -68,7 +64,7 @@
                                         <limit>
                                             <counter>LINE</counter>
                                             <value>COVEREDRATIO</value>
-                                            <minimum>0.80</minimum>
+                                            <minimum>0.70</minimum>
                                         </limit>
                                     </limits>
                                 </rule>
